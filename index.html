@@ -29,7 +29,7 @@
             background-position: center top;
             background-size: cover;
             position: relative;
-            height: 70vh;
+            min-height: 70vh;
         }
 
         .overlay {
@@ -199,6 +199,7 @@
         .carousel-inner {
             display: flex;
             transition: transform 0.5s ease-in-out;
+            touch-action: pan-y;
         }
 
         .carousel-item {
@@ -213,62 +214,42 @@
             object-fit: cover;
             border-radius: 12px;
             margin: 0 auto;
-            cursor: pointer;
+            cursor: grab;
         }
 
         .carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
+            display: none;
         }
-
-        .carousel-btn {
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-
+        
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
-
             .bg-cover-image {
-                height: 50vh;
+                min-height: 50vh;
             }
-
             .countdown {
                 flex-wrap: wrap;
                 gap: 0.5rem;
             }
-
             .countdown-box {
                 min-width: 60px;
                 padding: 0.5rem;
             }
-
             .countdown-number {
                 font-size: 1.5rem;
             }
-
             .grid {
                 grid-template-columns: 1fr;
             }
-
             .flex {
                 flex-direction: column;
             }
-
             .text-center {
                 text-align: center;
             }
         }
-
+        
         @media (max-width: 640px) {
             header h1 {
                 font-size: 2.5rem !important;
@@ -281,18 +262,12 @@
 </head>
 
 <body class="bg-[#F4EFE6]">
-    <!-- Header Section -->
     <header class="bg-cover-image" style="background-image: url('images/42ED596B-94AF-4AB7-8660-F549AAF340D3.JPG');">
         <div class="overlay">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-[#F7931E] drop-shadow-lg animate-pulse">
+            <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold mb- text-[#F7931E] drop-shadow-lg animate-pulse" style="white-space: normal; word-break: break-word;">
                 ЛУЧШАЯ ВЕРСИЯ СЕБЯ
             </h1>
-            <p class="text-xl md:text-2xl font-medium text-white mb-6">
-                Легендарный Марафон
-            </p>
-            <p class="text-lg md:text-xl font-light text-white mb-8">
-                Хватит откладывать жизнь на потом!
-            </p>
+            
             <div class="countdown">
                 <div class="countdown-box">
                     <div class="countdown-number" id="days">00</div>
@@ -314,14 +289,18 @@
             <a href="#payment-section" class="btn btn-primary animate-bounce">
                 Начать трансформацию
             </a>
+            <h5 class="text-2 xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-[#F79317E] drop-shadow-lg " style="white-space: normal;  break-word;">
+            29 СЕНТЯБРЯ 2025
+            </h5>
             <p class="mt-4 p-2 bg-white bg-opacity-80 rounded-full text-sm font-medium text-gray-800 shadow-md">
                 Уже более <span class="text-red-500">1500</span> участниц получили результат
             </p>
+            
         </div>
     </header>
 
-    <!-- Problem Section -->
     <section class="container py-16 text-center">
+        
         <h2 class="text-3xl md:text-4xl font-bold mb-6">
             Всё ещё ждёшь, что «завтра» ты наконец начнёшь новую жизнь?
         </h2>
@@ -363,7 +342,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="container py-16">
         <div class="card fade-in text-center">
             <div class="flex flex-col lg:flex-row items-center gap-12">
@@ -385,7 +363,6 @@
         </div>
     </section>
 
-    <!-- What to Expect Section -->
     <section class="container py-16 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-12 fade-in">
             Что тебя ждёт?
@@ -448,7 +425,6 @@
         </div>
     </section>
 
-    <!-- Course Content Section -->
     <section class="bg-[#2C623C] text-white py-16 text-center">
         <div class="container fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
@@ -512,7 +488,6 @@
         </div>
     </section>
 
-    <!-- Bonuses Section -->
     <section class="py-16 bg-[#F4EFE6] text-center">
         <div class="container fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-12">
@@ -550,7 +525,6 @@
         </div>
     </section>
 
-    <!-- Payment Section -->
     <section id="payment-section" class="py-16 bg-[#f0f0f0] text-center">
         <div class="container fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-8">Сделай выбор в пользу себя!</h2>
@@ -575,7 +549,6 @@
         </div>
     </section>
 
-    <!-- Before/After Section -->
     <section class="py-16 text-center">
         <div class="container fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-12">ДО/ПОСЛЕ</h2>
@@ -598,15 +571,10 @@
                         <p class="mt-4 text-gray-700">"Поддержка команды — это главное! +5 кг мышц, -5 см в талии"</p>
                     </div>
                 </div>
-                <div class="carousel-controls">
-                    <button class="carousel-btn" id="beforeAfterPrev">&#8592;</button>
-                    <button class="carousel-btn" id="beforeAfterNext">&#8594;</button>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Reviews Section -->
     <section class="py-16 text-center">
         <div class="container fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-12">Отзывы</h2>
@@ -614,29 +582,29 @@
                 <div class="carousel-inner">
                     <div class="carousel-item">
                         <a href="images/IMG_8819.JPG" target="_blank"><img src="images/IMG_8819.JPG" alt="Отзыв 1"></a>
+                        <p class="mt-4 text-gray-700">Юлия, 32 года</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8838.JPG" target="_blank"><img src="images/IMG_8838.JPG" alt="Отзыв 2"></a>
+                        <p class="mt-4 text-gray-700">Светлана, 45 лет</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8839.JPG" target="_blank"><img src="images/IMG_8839.JPG" alt="Отзыв 3"></a>
+                        <p class="mt-4 text-gray-700">Елена, 38 лет</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8840.JPG" target="_blank"><img src="images/IMG_8840.JPG" alt="Отзыв 4"></a>
+                        <p class="mt-4 text-gray-700">Анна, 50 лет</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8841.JPG" target="_blank"><img src="images/IMG_8841.JPG" alt="Отзыв 5"></a>
+                        <p class="mt-4 text-gray-700">Ольга, 41 год</p>
                     </div>
-                </div>
-                <div class="carousel-controls">
-                    <button class="carousel-btn" id="reviewPrev">&#8592;</button>
-                    <button class="carousel-btn" id="reviewNext">&#8594;</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
     <section class="py-16 bg-[#f0f0f0] text-center">
         <div class="container fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-12">Ответы на частые вопросы</h2>
@@ -762,7 +730,6 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
     <footer class="bg-[#333] text-white py-12 text-center">
         <div class="container text-sm">
             <p class="mb-4">&copy; 2025. Самозанятая Макаренко Наталья Анатольевна. Все права защищены.</p>
@@ -848,37 +815,88 @@
         // Start the timer and assign the interval ID to x
         x = setInterval(updateCountdown, 1000);
 
-        // Carousel for Before/After
-        const beforeAfterCarousel = document.getElementById('beforeAfterCarousel');
-        const beforeAfterInner = beforeAfterCarousel.querySelector('.carousel-inner');
-        const beforeAfterItems = beforeAfterInner.children;
-        let beforeAfterIndex = 0;
+        // Generic Carousel Swipe Functionality
+        function setupSwipeCarousel(carouselId) {
+            const carousel = document.getElementById(carouselId);
+            const inner = carousel.querySelector('.carousel-inner');
+            const items = inner.children;
+            let currentIndex = 0;
+            let startX = 0;
+            let isDragging = false;
 
-        document.getElementById('beforeAfterPrev').addEventListener('click', () => {
-            beforeAfterIndex = (beforeAfterIndex > 0) ? beforeAfterIndex - 1 : beforeAfterItems.length - 1;
-            beforeAfterInner.style.transform = `translateX(-${beforeAfterIndex * 100}%)`;
-        });
+            function updateCarouselPosition() {
+                inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
 
-        document.getElementById('beforeAfterNext').addEventListener('click', () => {
-            beforeAfterIndex = (beforeAfterIndex < beforeAfterItems.length - 1) ? beforeAfterIndex + 1 : 0;
-            beforeAfterInner.style.transform = `translateX(-${beforeAfterIndex * 100}%)`;
-        });
+            carousel.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                inner.style.transition = 'none';
+                carousel.style.cursor = 'grabbing';
+            });
 
-        // Carousel for Reviews
-        const reviewCarousel = document.getElementById('reviewCarousel');
-        const reviewInner = reviewCarousel.querySelector('.carousel-inner');
-        const reviewItems = reviewInner.children;
-        let reviewIndex = 0;
+            carousel.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    inner.style.transition = 'transform 0.5s ease-in-out';
+                    carousel.style.cursor = 'grab';
+                }
+            });
 
-        document.getElementById('reviewPrev').addEventListener('click', () => {
-            reviewIndex = (reviewIndex > 0) ? reviewIndex - 1 : reviewItems.length - 1;
-            reviewInner.style.transform = `translateX(-${reviewIndex * 100}%)`;
-        });
+            carousel.addEventListener('mouseleave', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    inner.style.transition = 'transform 0.5s ease-in-out';
+                    carousel.style.cursor = 'grab';
+                }
+            });
 
-        document.getElementById('reviewNext').addEventListener('click', () => {
-            reviewIndex = (reviewIndex < reviewItems.length - 1) ? reviewIndex + 1 : 0;
-            reviewInner.style.transform = `translateX(-${reviewIndex * 100}%)`;
-        });
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const moveX = e.clientX - startX;
+                const threshold = 50;
+
+                if (moveX > threshold) {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+                    updateCarouselPosition();
+                    isDragging = false;
+                } else if (moveX < -threshold) {
+                    currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+                    updateCarouselPosition();
+                    isDragging = false;
+                }
+            });
+
+            // Touch events for mobile
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                inner.style.transition = 'none';
+            }, { passive: true });
+
+            carousel.addEventListener('touchmove', (e) => {
+                if (e.touches.length > 1) return;
+                const touchMoveX = e.touches[0].clientX - startX;
+                const threshold = 50;
+
+                if (touchMoveX > threshold) {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+                    updateCarouselPosition();
+                    startX = e.touches[0].clientX;
+                } else if (touchMoveX < -threshold) {
+                    currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+                    updateCarouselPosition();
+                    startX = e.touches[0].clientX;
+                }
+            });
+
+            carousel.addEventListener('touchend', () => {
+                inner.style.transition = 'transform 0.5s ease-in-out';
+            });
+        }
+
+        // Initialize swipe for both carousels
+        setupSwipeCarousel('beforeAfterCarousel');
+        setupSwipeCarousel('reviewCarousel');
     </script>
 </body>
 
