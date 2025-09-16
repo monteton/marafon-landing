@@ -2,17 +2,17 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Легендарный Марафон «ЛУЧШАЯ ВЕРСИЯ СЕБЯ»</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: #f4f4f4;
             color: #333;
             overflow-x: hidden;
@@ -48,33 +48,6 @@
             padding: 2rem;
         }
 
-        .countdown {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            animation: fadeIn 1s ease-in-out;
-            justify-content: center;
-        }
-
-        .countdown-box {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            padding: 1rem;
-            text-align: center;
-            color: #333;
-            min-width: 80px;
-        }
-
-        .countdown-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .countdown-label {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-        }
-
         .btn {
             padding: 0.75rem 2rem;
             border-radius: 9999px;
@@ -84,6 +57,8 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: inline-block;
         }
 
         .btn-primary {
@@ -108,62 +83,6 @@
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .icon {
-            color: #f7931e;
-            font-size: 1.5rem;
-            margin-right: 1rem;
-        }
-
-        .list-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .list-item-text {
-            flex: 1;
-        }
-
-        .testimonial-card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .faq-item {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            padding-top: 0;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding-top: 1rem;
         }
 
         .fade-in {
@@ -217,39 +136,28 @@
             cursor: grab;
         }
 
-        .carousel-controls {
-            display: none;
-        }
-        
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
+
             .bg-cover-image {
                 min-height: 50vh;
             }
-            .countdown {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            .countdown-box {
-                min-width: 60px;
-                padding: 0.5rem;
-            }
-            .countdown-number {
-                font-size: 1.5rem;
-            }
+
             .grid {
                 grid-template-columns: 1fr;
             }
+
             .flex {
                 flex-direction: column;
             }
+
             .text-center {
                 text-align: center;
             }
         }
-        
+
         @media (max-width: 640px) {
             header h1 {
                 font-size: 2.5rem !important;
@@ -258,49 +166,100 @@
                 word-break: break-word !important;
             }
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            position: relative;
+            overflow-y: auto;
+            max-height: 80vh;
+            border-radius: 8px;
+            color: #333;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding-top: 0;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
     </style>
 </head>
 
 <body class="bg-[#F4EFE6]">
+
     <header class="bg-cover-image" style="background-image: url('images/42ED596B-94AF-4AB7-8660-F549AAF340D3.JPG');">
         <div class="overlay">
-            <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold mb- text-[#F7931E] drop-shadow-lg animate-pulse" style="white-space: normal; word-break: break-word;">
+            <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold mb- text-[#F7931E] drop-shadow-lg animate-pulse"
+                style="white-space: normal; word-break: break-word;">
                 ЛУЧШАЯ ВЕРСИЯ СЕБЯ
             </h1>
-            
-            <div class="countdown">
-                <div class="countdown-box">
-                    <div class="countdown-number" id="days">00</div>
-                    <div class="countdown-label">дней</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="countdown-number" id="hours">00</div>
-                    <div class="countdown-label">часов</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="countdown-number" id="minutes">00</div>
-                    <div class="countdown-label">минут</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="countdown-number" id="seconds">00</div>
-                    <div class="countdown-label">секунд</div>
-                </div>
-            </div>
-            <a href="#payment-section" class="btn btn-primary animate-bounce">
-                Начать трансформацию
-            </a>
-            <h5 class="text-2 xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-[#F79317E] drop-shadow-lg " style="white-space: normal;  break-word;">
-            29 СЕНТЯБРЯ 2025
+            <h5 class="text-2xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white drop-shadow-lg"
+                style="white-space: normal; word-break: break-word;">
+                Старт 29 СЕНТЯБРЯ
             </h5>
             <p class="mt-4 p-2 bg-white bg-opacity-80 rounded-full text-sm font-medium text-gray-800 shadow-md">
                 Уже более <span class="text-red-500">1500</span> участниц получили результат
             </p>
-            
+            <a href="#payment-section" class="btn btn-primary animate-bounce mt-8">
+                Начать трансформацию
+            </a>
         </div>
     </header>
 
     <section class="container py-16 text-center">
-        
+
         <h2 class="text-3xl md:text-4xl font-bold mb-6">
             Всё ещё ждёшь, что «завтра» ты наконец начнёшь новую жизнь?
         </h2>
@@ -311,25 +270,21 @@
             <div class="lg:w-1/2 fade-in">
                 <ul class="space-y-4 text-left inline-block">
                     <li class="flex items-start list-item">
-                        <i class="fas fa-check-circle text-[#F7931E] mt-1 icon"></i>
                         <p class="text-lg list-item-text">
                             Никак не можешь похудеть и вернуть энергию.
                         </p>
                     </li>
                     <li class="flex items-start list-item">
-                        <i class="fas fa-check-circle text-[#F7931E] mt-1 icon"></i>
                         <p class="text-lg list-item-text">
                             Всё делаешь «правильно» - но вес стоит.
                         </p>
                     </li>
                     <li class="flex items-start list-item">
-                        <i class="fas fa-check-circle text-[#F7931E] mt-1 icon"></i>
                         <p class="text-lg list-item-text">
                             Голодовки и диеты только портят настроение.
                         </p>
                     </li>
                     <li class="flex items-start list-item">
-                        <i class="fas fa-check-circle text-[#F7931E] mt-1 icon"></i>
                         <p class="text-lg list-item-text">
                             Стресс перед каждым отпуском и мысли о том, что "после 30 уже поздно".
                         </p>
@@ -369,7 +324,6 @@
         </h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="card fade-in text-center">
-                <i class="fas fa-weight-hanging text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Прощай, лишние кг!
                 </h3>
@@ -378,7 +332,6 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
-                <i class="fas fa-hand-holding-heart text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Подтянутое, упругое тело.
                 </h3>
@@ -387,7 +340,6 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
-                <i class="fas fa-utensils text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Питание - это просто!
                 </h3>
@@ -396,7 +348,6 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
-                <i class="fas fa-battery-full text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Больше энергии, меньше усталости.
                 </h3>
@@ -405,7 +356,6 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
-                <i class="fas fa-users text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Поддержка и сообщество.
                 </h3>
@@ -414,7 +364,6 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
-                <i class="fas fa-graduation-cap text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Знания, которые с тобой останутся на всю жизнь!
                 </h3>
@@ -432,44 +381,28 @@
             </h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <ul class="space-y-4">
-                        <li class="flex items-center">
-                            <i class="fas fa-video text-xl mr-4"></i>
-                            <p>Удобные видеоуроки по питанию и тренировкам</p>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-running text-xl mr-4"></i>
-                            <p>Готовые тренировки для дома и зала</p>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-chart-line text-xl mr-4"></i>
-                            <p>Видео по питанию: научимся считать калории, составлять рацион</p>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-lightbulb text-xl mr-4"></i>
-                            <p>Мотивационные уроки, которые помогут не сорваться</p>
-                        </li>
-                    </ul>
+                    <p>Удобные видеоуроки по питанию и тренировкам - всё, что нужно, чтобы наконец-то разобраться в вопросе похудения и красивого подтянутого тела.</p>
                 </div>
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <ul class="space-y-4">
-                        <li class="flex items-center">
-                            <i class="fas fa-spa text-xl mr-4"></i>
-                            <p>Видео по уходу за кожей и растяжке</p>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-dumbbell text-xl mr-4"></i>
-                            <p>МФР - тренировки на снятие мышечного напряжения</p>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-file-alt text-xl mr-4"></i>
-                            <p>Полезные материалы: файлы и чек-листы для системы без срывов</p>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-comments text-xl mr-4"></i>
-                            <p>Чат поддержки и вдохновения</p>
-                        </li>
-                    </ul>
+                    <p>Готовые тренировки для дома и зала</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p>Видео по питанию: научимся считать калории, правильно составлять рацион, разберем самые частые ошибки.</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p>Мотивационные уроки, которые помогут не сорваться и идти до конца.</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p>Видео по уходу за кожей и растяжке, которые станут твоим секретом молодости и здоровья.</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p>МФР - тренировки на снятие мышечного напряжения, восстановления после нагрузок и предотвращение травм</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p>Полезные материалы: файлы и чек-листы для системы без срывов.</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p>Чат поддержки и вдохновения.</p>
                 </div>
             </div>
             <div class="text-center mt-8 text-white">
@@ -495,27 +428,23 @@
             </h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="card text-center p-6 border-2 border-[#F7931E] fade-in">
-                    <i class="fas fa-medal text-4xl text-[#F7931E] mb-4"></i>
                     <p class="font-bold">
-                        3 дополнительные тренировки для старта
+                        3 дополнительные тренировки для старта, чтобы получить максимальный результат
                     </p>
                 </div>
                 <div class="card text-center p-6 border-2 border-[#F7931E] fade-in">
-                    <i class="fas fa-star text-4xl text-[#F7931E] mb-4"></i>
                     <p class="font-bold">
-                        Эксклюзивное меню
+                        Эксклюзивное меню.
                     </p>
                 </div>
                 <div class="card text-center p-6 border-2 border-[#F7931E] fade-in">
-                    <i class="fas fa-user-friends text-4xl text-[#F7931E] mb-4"></i>
                     <p class="font-bold">
-                        Знакомство с участницами и доступ в чат
+                        Знакомство с участницами и доступ в чат с поддержкой сразу после оплаты.
                     </p>
                 </div>
                 <div class="card text-center p-6 border-2 border-[#F7931E] fade-in">
-                    <i class="fas fa-user-circle text-4xl text-[#F7931E] mb-4"></i>
                     <p class="font-bold">
-                        Больше общения со мной лично
+                        Больше общения со мной лично.
                     </p>
                 </div>
             </div>
@@ -532,18 +461,30 @@
                 <span class="text-red-500">Специальная цена</span> сейчас: <span class="text-red-500">4490 ₽</span> вместо <span class="line-through">5490 ₽</span>.
             </p>
             <div class="grid md:grid-cols-2 gap-8 text-left">
-                <div class="card p-8 border-4 border-[#F7931E] transition-all duration-300 transform hover:scale-105 text-center">
+                <div
+                    class="card p-8 border-4 border-[#F7931E] transition-all duration-300 transform hover:scale-105 text-center">
                     <h3 class="text-2xl font-bold mb-4">Участвовать по предоплате и забрать бонусы</h3>
-                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4"><span class="text-red-500">1000</span> <span class="text-3xl">рублей</span></p>
+                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4"><span class="text-red-500">1000</span> <span
+                            class="text-3xl">рублей</span></p>
                     <p class="mb-6 text-gray-600">Забронируй место и все бонусы, а остаток внеси до начала марафона.</p>
-                    <a href="#" class="btn btn-primary w-full inline-block">Внести предоплату</a>
+                    <button onclick="window.open('https://payform.ru/4191HSd/', '_blank')"
+                        class="btn btn-primary w-full mb-2">Оплата из России</button>
+                    <button onclick="window.open('https://app.lava.top/products/87f5c1b4-1ee7-48f6-8d84-6bc6998a7f34', '_blank')"
+                        class="btn btn-primary w-full">Оплата не из России</button>
                 </div>
-                <div class="card p-8 border-4 border-[#2C623C] transition-all duration-300 transform hover:scale-105 relative text-center">
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2C623C] text-white text-xs font-bold px-4 py-1 rounded-full uppercase">Максимум выгоды</div>
+                <div
+                    class="card p-8 border-4 border-[#2C623C] transition-all duration-300 transform hover:scale-105 relative text-center">
+                    <div
+                        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2C623C] text-white text-xs font-bold px-4 py-1 rounded-full uppercase">
+                        Максимум выгоды</div>
                     <h3 class="text-2xl font-bold mb-4">Оплатить полностью и забрать бонусы</h3>
-                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4"><span class="text-red-500">4490</span> <span class="text-3xl">рублей</span></p>
+                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4"><span class="text-red-500">4490</span> <span
+                            class="text-3xl">рублей</span></p>
                     <p class="mb-6 text-gray-600">Получи моментальный доступ ко всем бонусам и чату участниц!</p>
-                    <a href="#" class="btn btn-primary w-full inline-block">Оплатить полностью</a>
+                    <button onclick="window.open('https://payform.ru/full_payment_russia_link', '_blank')"
+                        class="btn btn-primary w-full mb-2">Оплата из России</button>
+                    <button onclick="window.open('https://app.lava.top/full_payment_non_russia_link', '_blank')"
+                        class="btn btn-primary w-full">Оплата не из России</button>
                 </div>
             </div>
         </div>
@@ -556,19 +497,19 @@
                 <div class="carousel-inner">
                     <div class="carousel-item">
                         <a href="images/IMG_8821.JPG" target="_blank"><img src="images/IMG_8821.JPG" alt="ДО/ПОСЛЕ 1"></a>
-                        <p class="mt-4 text-gray-700">"Минус 7 кг, впервые за 10 лет чувствую гордость за себя!"</p>
+                        <p class="mt-4 text-gray-700">Минус 7 кг, впервые за 10 лет чувствую гордость за себя! — Марина, 42 года</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8822.JPG" target="_blank"><img src="images/IMG_8822.JPG" alt="ДО/ПОСЛЕ 2"></a>
-                        <p class="mt-4 text-gray-700">"Ушла усталость, вернулась энергия, жизнь заиграла!"</p>
+                        <p class="mt-4 text-gray-700">Ушла усталость, вернулась энергия, жизнь заиграла! — Светлана, 35 лет</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8826.JPG" target="_blank"><img src="images/IMG_8826.JPG" alt="ДО/ПОСЛЕ 3"></a>
-                        <p class="mt-4 text-gray-700">"Теперь люблю своё отражение, питание стало удовольствием!"</p>
+                        <p class="mt-4 text-gray-700">Теперь люблю своё отражение, питание стало удовольствием! — Елена, 47 лет</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8827.JPG" target="_blank"><img src="images/IMG_8827.JPG" alt="ДО/ПОСЛЕ 4"></a>
-                        <p class="mt-4 text-gray-700">"Поддержка команды — это главное! +5 кг мышц, -5 см в талии"</p>
+                        <p class="mt-4 text-gray-700">Поддержка команды — это главное! +5 кг мышц, -5 см в талии — Ольга, 41 год</p>
                     </div>
                 </div>
             </div>
@@ -582,23 +523,18 @@
                 <div class="carousel-inner">
                     <div class="carousel-item">
                         <a href="images/IMG_8819.JPG" target="_blank"><img src="images/IMG_8819.JPG" alt="Отзыв 1"></a>
-                        <p class="mt-4 text-gray-700">Юлия, 32 года</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8838.JPG" target="_blank"><img src="images/IMG_8838.JPG" alt="Отзыв 2"></a>
-                        <p class="mt-4 text-gray-700">Светлана, 45 лет</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8839.JPG" target="_blank"><img src="images/IMG_8839.JPG" alt="Отзыв 3"></a>
-                        <p class="mt-4 text-gray-700">Елена, 38 лет</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8840.JPG" target="_blank"><img src="images/IMG_8840.JPG" alt="Отзыв 4"></a>
-                        <p class="mt-4 text-gray-700">Анна, 50 лет</p>
                     </div>
                     <div class="carousel-item">
                         <a href="images/IMG_8841.JPG" target="_blank"><img src="images/IMG_8841.JPG" alt="Отзыв 5"></a>
-                        <p class="mt-4 text-gray-700">Ольга, 41 год</p>
                     </div>
                 </div>
             </div>
@@ -609,13 +545,13 @@
         <div class="container fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-12">Ответы на частые вопросы</h2>
             <div id="faq-container" class="inline-block text-left w-full max-w-2xl">
-                <div class="faq-item">
+                <div class="faq-item active">
                     <div class="faq-question">
                         <span>Я никогда не занималась, подойдет ли мне марафон?</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="mt-4 text-gray-700">Конечно, можно! Марафон идеально подходит как для новичков, так и для уже практикующих. Мы начинаем с основ и плавно переходим к более сложным упражнениям, поэтому вы точно не почувствуете себя потерянной.</p>
+                        <p class="mt-4 text-gray-700">Конечно, можно! Марафон идеально подходит как для новичков, так и для уже практикующих, но кто хочет получить новые результаты и мотивацию. Мы начинаем с основ и плавно переходим к более сложным упражнениям, поэтому вы точно не почувствуете себя потерянной.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -624,7 +560,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="mt-4 text-gray-700">Да, конечно! Марафон полезен не только новичкам, и вы наверняка найдете для себя пользу. Ведь в нем не только тренировки, а ещё и видео по питанию, уходу за собой, меню, полезные рецепты, а главное чат единомышленников и поддержка на всём пути.</p>
+                        <p class="mt-4 text-gray-700">Да, конечно! Марафон полезен не только новичкам и вы наверняка найдете для себя пользу. Ведь в нем не только тренировки, а ещё и видео по питанию, уходу за собой, меню, полезные рецепты, а главное чат единомышленников и поддержка на всём пути, чтобы вы смогли сделать свои новые результаты.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -633,7 +569,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="mt-4 text-gray-700">Смотря какие проблемы со здоровьем. Марафон разработан для тех, кому не запрещены тренировки. Если у вас есть хронические заболевания и серьезные ограничения по физическим нагрузкам, пожалуйста, проконсультируйтесь со своим лечащим врачом перед началом марафона. Или напишите мне в ватсап. Я забочусь о вашем здоровье, и моя цель - помочь вам, не навредив.</p>
+                        <p class="mt-4 text-gray-700">Смотря какие проблемы со здоровьем. Марафон разработан для тех, кому не запрещены тренировки. Если у вас есть хронические заболевания и серьезные ограничения по физическим нагрузкам, пожалуйста, проконсультируйтесь со своим лечащим врачом перед началом марафона. Или напишите мне в ватсап. Я забочусь о вашем здоровье, и моя цель- помочь вам, не навредив.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -732,15 +668,62 @@
 
     <footer class="bg-[#333] text-white py-12 text-center">
         <div class="container text-sm">
-            <p class="mb-4">&copy; 2025. Самозанятая Макаренко Наталья Анатольевна. Все права защищены.</p>
+            <p class="mb-4">© 2025. Самозанятая Макаренко Наталья Анатольевна. Все права защищены.</p>
             <p class="mb-2">ИНН: 772672813036 | Юридический адрес: г. Москва, ул. Херсонская д. 26, корпус 2, кв. 120</p>
             <p class="mb-2">e-mail: manbrikserg@mail.ru</p>
             <p class="mb-2">Режим работы: с понедельника по пятницу с 10:00 до 17:00 (МСК)</p>
             <p class="mt-4">
-                <a href="#" class="underline hover:text-[#F7931E]">Политика в отношении обработки персональных данных</a>
+                <a href="#" class="underline hover:text-[#F7931E]" onclick="document.getElementById('policyModal').style.display='block';return false;">Политика в отношении обработки персональных данных</a>
             </p>
         </div>
     </footer>
+
+    <div id="policyModal" class="modal">
+        <div class="modal-content">
+            <button aria-label="Закрыть" class="modal-close" onclick="document.getElementById('policyModal').style.display='none'">&times;</button>
+            <h2>Политика обработки персональных данных</h2>
+            <p><strong>Политика обработки персональных данных Макаренко Натальи Анатольевны (ИНН 772672813036)</strong>, разработана в соответствии с Федеральным законом от 27.07.2006 г. № 152-ФЗ «О персональных данных» (далее — Закон) и другими нормативными правовыми актами в области персональных данных.</p>
+            <p>Когда в Политике используются слова «мы», «нас» и прочие, говорится о Макаренко Наталье Анатольевне (ИНН 772672813036).</p>
+            <p>В Политике мы обращаемся к вам, как пользователю нашего сайта, размещенного по адресу nataliamakarenko.ru (включая поддомены) (далее — Сайт).</p>
+            <h3>О чем Политика?</h3>
+            <p>В Политике изложена информация о том, как мы обрабатываем ваши персональные данные, обеспечиваем их безопасность и конфиденциальность. Из Политики вы узнаете, какие персональные данные мы получаем и как их используем.</p>
+            <p>Также в Политике мы перечислили основные права субъектов персональных данных и объяснили, как ими воспользоваться.</p>
+            <h3>Что такое персональные данные?</h3>
+            <p>Персональные данные — это любая информация о человеке (субъекте персональных данных), по которым можно его определить. Мы обрабатываем только те персональные данные, которые перечислены в Политике, и которые характеризуют вас как пользователя Сайта.</p>
+            <p>Вы можете дать согласие на обработку персональных данных при заполнении заявки на оказание услуг, в соответствии с формой приведенной на Сайте.</p>
+            <h3>Какие права есть у вас?</h3>
+            <p>В любой момент, когда у нас есть ваши персональные данные, вы можете воспользоваться следующими правами:</p>
+            <ul>
+                <li><strong>Право на доступ:</strong> У вас есть право запросить копию персональных данных, которые у нас есть.</li>
+                <li><strong>Право на исправление:</strong> Вы можете попросить нас исправить неточные или неполные персональные данные.</li>
+                <li><strong>Право на отзыв:</strong> В любой момент вы можете отозвать свое согласие на обработку данных.</li>
+                <li><strong>Право на забвение:</strong> Вы можете запросить удаление данных, которые у нас есть относительно вас, за исключением случаев, когда мы обязаны хранить эти данные по закону.</li>
+            </ul>
+            <p>Вы можете обратиться к нам, если захотите уточнить порядок реализации иных прав, предусмотренных Федеральным законом «О персональных данных».</p>
+            <h3>Как мы обрабатываем персональные данные?</h3>
+            <p>Мы обрабатываем персональные данные как в цифровой форме (автоматизировано), так и вручную (без использования средств автоматизации). При этом мы ограничиваемся следующими действиями: сбор, систематизация, накопление, хранение, уточнение (обновление, изменение), обезличивание, уничтожение персональных данных.</p>
+            <h3>В каких целях мы обрабатываем ваши персональные данные?</h3>
+            <p>Мы не передаем ваши персональные данные третьим лицам без вашего согласия, за исключением случаев, когда такая обязанность установлена для нас законом.</p>
+            <p>При этом при получении вашего согласия на такую передачу, мы предоставляем ваши персональные данные третьим лицам для достижения заявленных выше целей обработки персональных данных.</p>
+            <h3>Как мы обеспечиваем безопасность персональных данных?</h3>
+            <p>Мы защищаем персональные данные, которые у нас хранятся, от разглашения, полной или частичной утраты, а также несанкционированного доступа со стороны третьих лиц. Для этого мы используем все необходимые технические и организационные меры по обеспечению безопасности и конфиденциальности, и постоянно обновляем их с учетом последних технических разработок.</p>
+            <p>Если происходит утечка персональных данных, то мы:</p>
+            <ul>
+                <li>в течение 24 часов уведомляем об этом Роскомнадзор;</li>
+                <li>в течение 72 часов проводим собственное расследование и уведомляем Роскомнадзор о его результатах.</li>
+            </ul>
+            <h3>Как мы вносим изменения в Политику?</h3>
+            <p>Мы оставляем за собой право вносить изменения в нашу Политику в любое время. Мы просим вас регулярно просматривать все обновления нашей Политики. Мы будем направлять уведомления об изменениях Политики в случае, если такие изменения являются существенными, всеми доступными нам способами.</p>
+            <h3>Что мы не проверяем?</h3>
+            <p>Мы не можем проверить и поэтому доверяем Вам в том, что вы: обладаете полной дееспособностью; предоставили собственные достоверные персональные данные.</p>
+            <h3>Как с нами связаться?</h3>
+            <p>По любым вопросам в отношении обработки персональных данных вы можете обратиться к нам по электронной почте.</p>
+            <p>При обращении укажите свое имя и контакты для обратной связи. Мы ответим на ваше обращение не позднее 10 рабочих дней с момента его получения.</p>
+            <h3>Реквизиты Оператора</h3>
+            <p><strong>Самозанятая Макаренко Наталья Анатольевна</strong><br>ИНН: 772672813036<br>КНД: 1122035<br>Справка о постановке на учет физического лица в качестве налогоплательщика налога на профессиональный доход №53913960 от 31.03.2024 г.<br>Юридический адрес: г. Москва, ул. Херсонская д. 26, корпус 2, кв. 120<br>e-mail: manbrikserg@mail.ru</p>
+            <p>Режим работы: с понедельника по пятницу с 10:00 до 17:00 (время московское).</p>
+        </div>
+    </div>
 
     <script>
         // Smooth scroll for anchor links
@@ -782,40 +765,7 @@
             appearOnScroll.observe(fader);
         });
 
-        // Countdown Timer
-        let x;
-        const countdownDate = new Date("Sep 29, 2025 00:00:00").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerHTML = days < 10 ? '0' + days : days;
-            document.getElementById("hours").innerHTML = hours < 10 ? '0' + hours : hours;
-            document.getElementById("minutes").innerHTML = minutes < 10 ? '0' + minutes : minutes;
-            document.getElementById("seconds").innerHTML = seconds < 10 ? '0' + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("days").innerHTML = "00";
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
-            }
-        }
-
-        // Initial call to prevent 1-second delay
-        updateCountdown();
-
-        // Start the timer and assign the interval ID to x
-        x = setInterval(updateCountdown, 1000);
-
-        // Generic Carousel Swipe Functionality
+        // Carousel Swipe Functionality
         function setupSwipeCarousel(carouselId) {
             const carousel = document.getElementById(carouselId);
             const inner = carousel.querySelector('.carousel-inner');
@@ -897,6 +847,14 @@
         // Initialize swipe for both carousels
         setupSwipeCarousel('beforeAfterCarousel');
         setupSwipeCarousel('reviewCarousel');
+
+        // Modal close on click outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('policyModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
     </script>
 </body>
 
