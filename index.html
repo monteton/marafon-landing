@@ -50,7 +50,7 @@
 
         .btn {
             padding: 0.75rem 2rem;
-            border-radius: 9999px;
+            border-radius: 8px;
             font-weight: 600;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -135,6 +135,29 @@
             margin: 0 auto;
             cursor: grab;
         }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-btn {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
 
         @media (max-width: 768px) {
             .container {
@@ -241,7 +264,8 @@
 
     <header class="bg-cover-image" style="background-image: url('images/42ED596B-94AF-4AB7-8660-F549AAF340D3.JPG');">
         <div class="overlay">
-            <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold mb- text-[#F7931E] drop-shadow-lg animate-pulse"
+            <h5 class="text-xl md:text-2xl font-medium text-white mb-2">Марафон</h5>
+            <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold mb- text-[#F7931E] drop-shadow-lg"
                 style="white-space: normal; word-break: break-word;">
                 ЛУЧШАЯ ВЕРСИЯ СЕБЯ
             </h1>
@@ -259,7 +283,6 @@
     </header>
 
     <section class="container py-16 text-center">
-
         <h2 class="text-3xl md:text-4xl font-bold mb-6">
             Всё ещё ждёшь, что «завтра» ты наконец начнёшь новую жизнь?
         </h2>
@@ -324,6 +347,7 @@
         </h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="card fade-in text-center">
+                <i class="fas fa-weight-hanging text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Прощай, лишние кг!
                 </h3>
@@ -332,6 +356,7 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
+                <i class="fas fa-hand-holding-heart text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Подтянутое, упругое тело.
                 </h3>
@@ -340,6 +365,7 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
+                <i class="fas fa-utensils text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Питание - это просто!
                 </h3>
@@ -348,6 +374,7 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
+                <i class="fas fa-battery-full text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Больше энергии, меньше усталости.
                 </h3>
@@ -356,6 +383,7 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
+                <i class="fas fa-users text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Поддержка и сообщество.
                 </h3>
@@ -364,6 +392,7 @@
                 </p>
             </div>
             <div class="card fade-in text-center">
+                <i class="fas fa-graduation-cap text-4xl text-[#F7931E] mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2">
                     Знания, которые с тобой останутся на всю жизнь!
                 </h3>
@@ -381,28 +410,28 @@
             </h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <p>Удобные видеоуроки по питанию и тренировкам - всё, что нужно, чтобы наконец-то разобраться в вопросе похудения и красивого подтянутого тела.</p>
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Удобные видеоуроки по питанию и тренировкам - всё, что нужно, чтобы наконец-то разобраться в вопросе похудения и красивого подтянутого тела.</p>
                 </div>
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <p>Готовые тренировки для дома и зала</p>
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Готовые тренировки для дома и зала</p>
                 </div>
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <p>Видео по питанию: научимся считать калории, правильно составлять рацион, разберем самые частые ошибки.</p>
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Видео по питанию: научимся считать калории, правильно составлять рацион, разберем самые частые ошибки.</p>
                 </div>
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <p>Мотивационные уроки, которые помогут не сорваться и идти до конца.</p>
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Мотивационные уроки, которые помогут не сорваться и идти до конца.</p>
                 </div>
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <p>Видео по уходу за кожей и растяжке, которые станут твоим секретом молодости и здоровья.</p>
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Видео по уходу за кожей и растяжке, которые станут твоим секретом молодости и здоровья.</p>
                 </div>
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <p>МФР - тренировки на снятие мышечного напряжения, восстановления после нагрузок и предотвращение травм</p>
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>МФР - тренировки на снятие мышечного напряжения, восстановления после нагрузок и предотвращение травм</p>
                 </div>
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <p>Полезные материалы: файлы и чек-листы для системы без срывов.</p>
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Полезные материалы: файлы и чек-листы для системы без срывов.</p>
                 </div>
                 <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
-                    <p>Чат поддержки и вдохновения.</p>
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Чат поддержки и вдохновения.</p>
                 </div>
             </div>
             <div class="text-center mt-8 text-white">
@@ -423,10 +452,14 @@
 
     <section class="py-16 bg-[#F4EFE6] text-center">
         <div class="container fade-in">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12">
-                Специальные бонусы!
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center">
+                <i class="fas fa-gift text-[#F7931E] mr-4"></i>
+                БОНУСЫ
             </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <p class="text-center mt-8 text-xl font-medium">
+                Специальные бонусы для тех, кто успеет оплатить до повышения цены и готов начать уже сегодня!
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
                 <div class="card text-center p-6 border-2 border-[#F7931E] fade-in">
                     <p class="font-bold">
                         3 дополнительные тренировки для старта, чтобы получить максимальный результат
@@ -448,24 +481,23 @@
                     </p>
                 </div>
             </div>
-            <p class="text-center mt-8 text-xl font-medium">
-                Специальные бонусы для тех, кто успеет оплатить до повышения цены и готов начать уже сегодня!
-            </p>
         </div>
     </section>
-
+    
     <section id="payment-section" class="py-16 bg-[#f0f0f0] text-center">
         <div class="container fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-8">Сделай выбор в пользу себя!</h2>
-            <p class="text-xl font-medium text-[#F7931E] mb-8">
-                <span class="text-red-500">Специальная цена</span> сейчас: <span class="text-red-500">4490 ₽</span> вместо <span class="line-through">5490 ₽</span>.
+            <p class="text-xl font-medium text-gray-800 mb-8">
+                <span class="text-red-500">Специальная цена</span> сейчас:
+                <span class="text-red-500">4490 ₽</span> вместо
+                <span class="line-through text-gray-500">5490 ₽</span>.
             </p>
             <div class="grid md:grid-cols-2 gap-8 text-left">
                 <div
                     class="card p-8 border-4 border-[#F7931E] transition-all duration-300 transform hover:scale-105 text-center">
                     <h3 class="text-2xl font-bold mb-4">Участвовать по предоплате и забрать бонусы</h3>
-                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4"><span class="text-red-500">1000</span> <span
-                            class="text-3xl">рублей</span></p>
+                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4"><span class="text-red-500 text-3xl">1000</span> <span
+                            class="text-xl">рублей</span></p>
                     <p class="mb-6 text-gray-600">Забронируй место и все бонусы, а остаток внеси до начала марафона.</p>
                     <button onclick="window.open('https://payform.ru/4191HSd/', '_blank')"
                         class="btn btn-primary w-full mb-2">Оплата из России</button>
@@ -478,8 +510,10 @@
                         class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2C623C] text-white text-xs font-bold px-4 py-1 rounded-full uppercase">
                         Максимум выгоды</div>
                     <h3 class="text-2xl font-bold mb-4">Оплатить полностью и забрать бонусы</h3>
-                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4"><span class="text-red-500">4490</span> <span
-                            class="text-3xl">рублей</span></p>
+                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4">
+                         <span class="text-gray-500 text-3xl line-through">5490 ₽</span>
+                         <span class="text-red-500 text-3xl ml-4">4490 ₽</span>
+                    </p>
                     <p class="mb-6 text-gray-600">Получи моментальный доступ ко всем бонусам и чату участниц!</p>
                     <button onclick="window.open('https://payform.ru/fj98cYi/', '_blank')"
                         class="btn btn-primary w-full mb-2">Оплата из России</button>
@@ -512,6 +546,10 @@
                         <p class="mt-4 text-gray-700">Поддержка команды — это главное! +5 кг мышц, -5 см в талии — Ольга, 41 год</p>
                     </div>
                 </div>
+                 <div class="carousel-controls">
+                    <button class="carousel-btn" id="beforeAfterPrev">&#8592;</button>
+                    <button class="carousel-btn" id="beforeAfterNext">&#8594;</button>
+                </div>
             </div>
         </div>
     </section>
@@ -537,6 +575,10 @@
                         <a href="images/IMG_8841.JPG" target="_blank"><img src="images/IMG_8841.JPG" alt="Отзыв 5"></a>
                     </div>
                 </div>
+                 <div class="carousel-controls">
+                    <button class="carousel-btn" id="reviewPrev">&#8592;</button>
+                    <button class="carousel-btn" id="reviewNext">&#8594;</button>
+                </div>
             </div>
         </div>
     </section>
@@ -545,7 +587,7 @@
         <div class="container fade-in">
             <h2 class="text-3xl md:text-4xl font-bold mb-12">Ответы на частые вопросы</h2>
             <div id="faq-container" class="inline-block text-left w-full max-w-2xl">
-                <div class="faq-item active">
+                <div class="faq-item">
                     <div class="faq-question">
                         <span>Я никогда не занималась, подойдет ли мне марафон?</span>
                         <i class="fas fa-chevron-down"></i>
@@ -661,6 +703,46 @@
                     <div class="faq-answer">
                         <p class="mt-4 text-gray-700">По всем вопросам связанным с оплатой напишите Вацап +79685189722 и вам помогут разобраться и подобрать удобный способ</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="payment-section-2" class="py-16 bg-[#f0f0f0] text-center">
+        <div class="container fade-in">
+            <p class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">
+                <span class="text-red-500">Специальная цена</span> сейчас:
+                <span class="text-red-500">4490 ₽</span> вместо
+                <span class="line-through text-gray-500">5490 ₽</span>.
+            </p>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Сделай выбор в пользу себя!</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                <div
+                    class="card p-8 border-4 border-[#F7931E] transition-all duration-300 transform hover:scale-105 text-center">
+                    <h3 class="text-2xl font-bold mb-4">Участвовать по предоплате и забрать бонусы</h3>
+                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4"><span class="text-red-500 text-3xl">1000</span> <span
+                            class="text-xl">рублей</span></p>
+                    <p class="mb-6 text-gray-600">Забронируй место и все бонусы, а остаток внеси до начала марафона.</p>
+                    <button onclick="window.open('https://payform.ru/4191HSd/', '_blank')"
+                        class="btn btn-primary w-full mb-2">Оплата из России</button>
+                    <button onclick="window.open('https://app.lava.top/products/87f5c1b4-1ee7-48f6-8d84-6bc6998a7f34', '_blank')"
+                        class="btn btn-primary w-full">Оплата не из России</button>
+                </div>
+                <div
+                    class="card p-8 border-4 border-[#2C623C] transition-all duration-300 transform hover:scale-105 relative text-center">
+                    <div
+                        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2C623C] text-white text-xs font-bold px-4 py-1 rounded-full uppercase">
+                        Максимум выгоды</div>
+                    <h3 class="text-2xl font-bold mb-4">Оплатить полностью и забрать бонусы</h3>
+                    <p class="text-5xl font-extrabold text-[#2C623C] mb-4">
+                         <span class="text-gray-500 text-3xl line-through">5490 ₽</span>
+                         <span class="text-red-500 text-3xl ml-4">4490 ₽</span>
+                    </p>
+                    <p class="mb-6 text-gray-600">Получи моментальный доступ ко всем бонусам и чату участниц!</p>
+                    <button onclick="window.open('https://payform.ru/fj98cYi/', '_blank')"
+                        class="btn btn-primary w-full mb-2">Оплата из России</button>
+                    <button onclick="window.open('https://app.lava.top/ru/products/8fefe241-03a4-4140-87b8-3ec55b0f099f?currency=EUR', '_blank')"
+                        class="btn btn-primary w-full">Оплата не из России</button>
                 </div>
             </div>
         </div>
