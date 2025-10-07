@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Легендарный Марафон «ЛУЧШАЯ ВЕРСИЯ СЕБЯ»</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .bg-cover-image {
+            background-image: url('images/course.jpg');
+            background-position: center top;
+            background-size: cover;
+            position: relative;
+            min-height: 70vh;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .btn:disabled {
+            background-color: #A5A5A5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background-color: #F44545;
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: #E02B2B;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Carousel Styles */
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            touch-action: pan-y;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            text-align: center;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 0 auto;
+            cursor: grab;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-btn {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .bg-cover-image {
+                min-height: 50vh;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flex {
+                flex-direction: column;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+                white-space: normal !important;
+                word-break: break-word !important;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            position: relative;
+            overflow-y: auto;
+            max-height: 80vh;
+            border-radius: 8px;
+            color: #333;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding-top: 0;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4EFE6]">
+
+    <header class="bg-cover-image" style="background-image: url('images/42ED596B-94AF-4AB7-8660-F549AAF340D3.JPG');">
+        <div class="overlay">
+            <h5 class="text-xl md:text-2xl font-medium text-white mb-2">ЛЕГЕНДАРНЫЙ МАРАФОН</h5>
+            <h1 class="text-3xl md:text-5xl lg:text-5xl font-extrabold mb- text-[#F7931E] drop-shadow-lg"
+                style="white-space: normal; word-break: break-word;">
+                ЛУЧШАЯ ВЕРСИЯ СЕБЯ
+            </h1>
+            <h5 class="text-2xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white drop-shadow-lg"
+                style="white-space: normal; word-break: break-word;">
+                Старт 6 октября
+            </h5>
+            <p class="mt-4 p-2 bg-white bg-opacity-80 rounded-full text-sm font-medium text-gray-800 shadow-md">
+                Уже более <span class="text-red-500">1500</span> участниц получили результат
+            </p>
+            <a class="btn btn-primary mt-8" style="background-color: #A5A5A5; cursor: not-allowed;">
+                Набор закрыт
+            </a>
+        </div>
+    </header>
+
+    <section class="container py-16 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Всё ещё ждёшь, что «завтра» ты наконец начнёшь новую жизнь?
+        </h2>
+        <div class="flex flex-col lg:flex-row items-center gap-12 text-center lg:text-left">
+            <div class="lg:w-1/2 fade-in flex justify-center">
+                <img src="images/43301017-57EB-4BA5-8F0B-9370B03F7C87.JPG" alt="Наталья Макаренко" class="w-full h-auto rounded-xl shadow-xl transition-transform duration-500 hover:scale-105">
+            </div>
+            <div class="lg:w-1/2 fade-in">
+                <ul class="space-y-4 text-left inline-block">
+                    <li class="flex items-start list-item">
+                        <p class="text-lg list-item-text">
+                            • Никак не можешь похудеть и вернуть энергию.
+                        </p>
+                    </li>
+                    <li class="flex items-start list-item">
+                        <p class="text-lg list-item-text">
+                            • Всё делаешь «правильно» - но вес стоит.
+                        </p>
+                    </li>
+                    <li class="flex items-start list-item">
+                        <p class="text-lg list-item-text">
+                            • Голодовки и диеты только портят настроение.
+                        </p>
+                    </li>
+                    <li class="flex items-start list-item">
+                        <p class="text-lg list-item-text">
+                            • Стресс перед каждым отпуском и мысли о том, что "после 30 уже поздно".
+                        </p>
+                    </li>
+                </ul>
+                <p class="text-2xl font-semibold mt-8 text-[#F7931E] drop-shadow-md">
+                    ЗНАКОМО?
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-16">
+        <div class="card fade-in text-center">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 flex justify-center">
+                    <img src="images/50F67F9E-14FD-4356-AE1B-66E31243764F.JPG" alt="Наталья Макаренко" class="w-full h-auto rounded-xl shadow-lg inline-block">
+                </div>
+                <div class="lg:w-1/2">
+                    <p class="text-lg mb-4">
+                        Я, <span class="font-bold text-[#F7931E]">Наталья Макаренко</span>, знаю, что можно по-другому. Мне 53, и я живу в теле, которое люблю. Вот уже несколько лет я помогаю женщинам стать лучшей версией себя, и я уверена, что у тебя всё получится!
+                    </p>
+                    <p class="text-lg mb-4">
+                        Марафон «Лучшая версия себя» - это 45 дней, которые полностью изменят твоё отношение к себе, своему телу и своей жизни.
+                    </p>
+                    <a class="btn btn-primary mt-4 inline-block" style="background-color: #A5A5A5; cursor: not-allowed;">
+                        Набор закрыт
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-16 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 fade-in">
+            Что тебя ждёт?
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card fade-in text-center">
+                <i class="fas fa-weight-hanging text-4xl text-[#F7931E] mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">
+                    Прощай, лишние кг!
+                </h3>
+                <p>
+                    Ты легко и с удовольствием избавишься от 3-7 кг, почувствуешь лёгкость и свободу движений.
+                </p>
+            </div>
+            <div class="card fade-in text-center">
+                <i class="fas fa-hand-holding-heart text-4xl text-[#F7931E] mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">
+                    Подтянутое, упругое тело.
+                </h3>
+                <p>
+                    Мы будем работать над тем, чтобы ты могла с гордостью носить любую одежду и нравиться себе в отражении.
+                </p>
+            </div>
+            <div class="card fade-in text-center">
+                <i class="fas fa-utensils text-4xl text-[#F7931E] mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">
+                    Питание - это просто!
+                </h3>
+                <p>
+                    Забудь о скучных диетах. Ты научишься интуитивно понимать своё тело, составлять вкусное и сбалансированное меню, которое станет частью твоей жизни.
+                </p>
+            </div>
+            <div class="card fade-in text-center">
+                <i class="fas fa-battery-full text-4xl text-[#F7931E] mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">
+                    Больше энергии, меньше усталости.
+                </h3>
+                <p>
+                    Ты забудешь о вечной разбитости. С помощью марафона ты сможешь вернуть себе жизненную силу и уверенность.
+                </p>
+            </div>
+            <div class="card fade-in text-center">
+                <i class="fas fa-users text-4xl text-[#F7931E] mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">
+                    Поддержка и сообщество.
+                </h3>
+                <p>
+                    Ты не будешь одна. В нашем закрытом чате ты найдёшь таких же женщин, как ты, и мою личную поддержку. Мы вместе будем идти к цели.
+                </p>
+            </div>
+            <div class="card fade-in text-center">
+                <i class="fas fa-graduation-cap text-4xl text-[#F7931E] mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">
+                    Знания, которые с тобой останутся на всю жизнь!
+                </h3>
+                <p>
+                    Это не просто марафон, это обучение. За 45 дней ты освоишь принципы, которые помогут тебе поддерживать результат.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-[#A5A5A5] text-white py-16 text-center">
+        <div class="container fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+                Что внутри курса?
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Удобные видеоуроки по питанию и тренировкам - всё, что нужно, чтобы наконец-то разобраться в вопросе похудения и красивого подтянутого тела.</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Готовые тренировки для дома и зала</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Видео по питанию: научимся считать калории, правильно составлять рацион, разберем самые частые ошибки.</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Мотивационные уроки, которые помогут не сорваться и идти до конца.</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Видео по уходу за кожей и растяжке, которые станут твоим секретом молодости и здоровья.</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>МФР - тренировки на снятие мышечного напряжения, восстановления после нагрузок и предотвращение травм</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Полезные материалы: файлы и чек-листы для системы без срывов.</p>
+                </div>
+                <div class="card bg-white text-[#2C623C] p-6 rounded-xl fade-in text-left">
+                    <p class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-4"></i>Чат поддержки и вдохновения.</p>
+                </div>
+            </div>
+            <div class="text-center mt-8 text-white">
+                <p class="mb-2">
+                    Длительность марафона - 45 дней
+                </p>
+                <p class="font-bold text-lg">
+                    Количество мест ограничено, так как это марафон с моей личной обратной связью.
+                </p>
+            </div>
+            <div class="text-center mt-12">
+                <a class="btn btn-primary inline-block" style="background-color: #A5A5A5; cursor: not-allowed;">
+                    Набор закрыт
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-[#F4EFE6] text-center">
+        <div class="container fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center">
+                <i class="fas fa-gift text-[#F7931E] mr-4"></i>
+                БОНУСЫ
+            </h2>
+            <p class="text-center mt-8 text-xl font-medium">
+                Специальные бонусы для тех, кто успеет оплатить до повышения цены и готов начать уже сегодня!
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+                <div class="card text-center p-6 border-2 border-[#F7931E] fade-in">
+                    <p class="font-bold">
+                        3 дополнительные тренировки для старта, чтобы получить максимальный результат
+                    </p>
+                </div>
+                <div class="card text-center p-6 border-2 border-[#F7931E] fade-in">
+                    <p class="font-bold">
+                        Эксклюзивное меню.
+                    </p>
+                </div>
+                <div class="card text-center p-6 border-2 border-[#F7931E] fade-in">
+                    <p class="font-bold">
+                        Знакомство с участницами и доступ в чат с поддержкой сразу после оплаты.
+                    </p>
+                </div>
+                <div class="card text-center p-6 border-2 border-[#F7931E] fade-in">
+                    <p class="font-bold">
+                        Больше общения со мной лично.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="payment-section" class="py-16 bg-[#f0f0f0] text-center">
+        <div class="container fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Набор на марафон завершен!</h2>
+            <p class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">
+                <span class="text-red-500">Следите за анонсами следующих потоков!</span>
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                
+                <div
+                    class="card p-8 border-4 border-[#2C623C] transition-all duration-300 transform relative text-center">
+                    <div
+                        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2C623C] text-white text-xs font-bold px-4 py-1 rounded-full uppercase">
+                        Максимум выгоды</div>
+                    <h3 class="text-2xl font-bold mb-4">Тариф БАЗОВЫЙ</h3>
+                    <h3 class="text-2xl font-bold mb-4"> </h3>
+                    <p class="text-5xl font-extrabold text-gray-500 mb-4">
+                         <del>Sold Out</del>
+                    </p>
+                    <p class="mb-6 text-gray-600">Набор на этот тариф завершен.</p>
+                    <button disabled class="btn btn-primary w-full mb-2"><del>Sold Out</del></button>
+                    <button disabled class="btn btn-primary w-full"><del>Sold Out</del></button>
+                </div>
+                <!-- Card 3: Тариф VIP -->
+                 <div class="card p-8 border-4 border-amber-500 transition-all duration-300 transform relative text-center flex flex-col">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-amber-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase">VIP</div>
+                    <h3 class="text-2xl font-bold mb-4">Тариф VIP</h3>
+                    <div class="flex-grow">
+                        <ul class="text-left mb-4 space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Входит вся базовая программа марафона с общим чатом</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Личный чат с Натальей.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Индивидуальный подбор меню от Натальи под ваш вкус, режим и особенности.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Более персональный подход по тренировкам.</span></li>
+                        </ul>
+                         <p class="text-4xl font-extrabold text-gray-500 mb-4"><del>Sold Out</del></p>
+                        <p class="mb-6 text-gray-600 font-bold">Все места заняты</p>
+                        </p>
+                    <p class="mb-6 text-gray-600">Набор на этот тариф завершен.</p>
+                    <button disabled class="btn btn-primary w-full mb-2"><del>Sold Out</del></button>
+                    <button disabled class="btn btn-primary w-full"><del>Sold Out</del></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 text-center">
+        <div class="container fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12">ДО/ПОСЛЕ</h2>
+            <div class="carousel" id="beforeAfterCarousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <a href="images/IMG_8821.JPG" target="_blank"><img src="images/IMG_8821.JPG" alt="ДО/ПОСЛЕ 1"></a>
+                        <p class="mt-4 text-gray-700">Минус 7 кг, впервые за 10 лет чувствую гордость за себя! — Марина, 42 года</p>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="images/IMG_8822.JPG" target="_blank"><img src="images/IMG_8822.JPG" alt="ДО/ПОСЛЕ 2"></a>
+                        <p class="mt-4 text-gray-700">Ушла усталость, вернулась энергия, жизнь заиграла! — Светлана, 35 лет</p>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="images/IMG_8826.JPG" target="_blank"><img src="images/IMG_8826.JPG" alt="ДО/ПОСЛЕ 3"></a>
+                        <p class="mt-4 text-gray-700">Теперь люблю своё отражение, питание стало удовольствием! — Елена, 47 лет</p>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="images/IMG_8827.JPG" target="_blank"><img src="images/IMG_8827.JPG" alt="ДО/ПОСЛЕ 4"></a>
+                        <p class="mt-4 text-gray-700">Поддержка команды — это главное! +5 кг мышц, -5 см в талии — Ольга, 41 год</p>
+                    </div>
+                </div>
+                 <div class="carousel-controls">
+                    <button class="carousel-btn" id="beforeAfterPrev">&#8592;</button>
+                    <button class="carousel-btn" id="beforeAfterNext">&#8594;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 text-center">
+        <div class="container fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12">Отзывы</h2>
+            <div class="carousel" id="reviewCarousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <a href="images/IMG_8819.JPG" target="_blank"><img src="images/IMG_8819.JPG" alt="Отзыв 1"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="images/IMG_8838.JPG" target="_blank"><img src="images/IMG_8838.JPG" alt="Отзыв 2"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="images/IMG_8839.JPG" target="_blank"><img src="images/IMG_8839.JPG" alt="Отзыв 3"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="images/IMG_8840.JPG" target="_blank"><img src="images/IMG_8840.JPG" alt="Отзыв 4"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="images/IMG_8841.JPG" target="_blank"><img src="images/IMG_8841.JPG" alt="Отзыв 5"></a>
+                    </div>
+                </div>
+                 <div class="carousel-controls">
+                    <button class="carousel-btn" id="reviewPrev">&#8592;</button>
+                    <button class="carousel-btn" id="reviewNext">&#8594;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-[#f0f0f0] text-center">
+        <div class="container fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12">Ответы на частые вопросы</h2>
+            <div id="faq-container" class="inline-block text-left w-full max-w-2xl">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Я никогда не занималась, подойдет ли мне марафон?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">Конечно, можно! Марафон идеально подходит как для новичков, так и для уже практикующих, но кто хочет получить новые результаты и мотивацию. Мы начинаем с основ и плавно переходим к более сложным упражнениям, поэтому вы точно не почувствуете себя потерянной.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Я часто занимаюсь, тренируюсь, будет ли мне полезен ваш марафон?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">Да, конечно! Марафон полезен не только новичкам и вы наверняка найдете для себя пользу. Ведь в нем не только тренировки, а ещё и видео по питанию, уходу за собой, меню, полезные рецепты, а главное чат единомышленников и поддержка на всём пути, чтобы вы смогли сделать свои новые результаты.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Подходит ли мне курс, если у меня есть проблемы со здоровьем?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">Смотря какие проблемы со здоровьем. Марафон разработан для тех, кому не запрещены тренировки. Если у вас есть хронические заболевания и серьезные ограничения по физическим нагрузкам, пожалуйста, проконсультируйтесь со своим лечащим врачом перед началом марафона. Или напишите мне в ватсап. Я забочусь о вашем здоровье, и моя цель- помочь вам, не навредив.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Сколько времени нужно уделять тренировкам?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">Тренировки занимают 40-60 минут в день, 3 раза в неделю. Я сделала программу максимально удобной и эффективной, чтобы она легко вписалась в ваш рабочий и жизненный график без стресса и спешки.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Нужен ли мне абонемент в спортзал?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">Нет! Я подготовила два варианта тренировок: для дома (с минимальным инвентарем, который легко заменить подручными вещами) и для зала. Вы можете выбрать то, что вам удобнее, и менять формат в любой момент.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Смогу ли я похудеть на 10 и больше кг?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">Результаты индивидуальны и зависят от ваших усилий и изначальных данных. В среднем мои участницы сбрасывают 3-7 кг за 30-45 дней. Важно помнить, что мы нацелены на долговременный результат, а не на временные показатели. Я учу вас правильно питаться и тренироваться, чтобы вес больше не возвращался. Если вы продолжите заниматься, вы сможете победить любые цифры.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>А если я сорвусь? Меня выгонят из курса?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">Конечно, нет! Программа марафона построена на принципе поддержки, а не наказания. Срывы - это часть пути, и главное - вернуться и продолжить. В чате поддержки мы поможем вам справиться с этим и найти мотивацию двигаться дальше. Вы всегда можете обратиться ко мне лично.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Что будет после окончания марафона? Я опять наберу вес?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">Марафон «Лучшая версия себя» - это обучение. За 45 дней вы освоите принципы правильного питания и тренировок. Эти знания останутся с вами навсегда, и вы сможете самостоятельно поддерживать результат. Я даю вам удочку, а не просто рыбу.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Будут ли индивидуальные консультации?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">В рамках основного пакета предусмотрена обратная связь в общем чате. Для тех, кому нужно больше моей личной работы, есть возможность приобрести персональные консультации и сопровождение. По этому вопросу напишите сюда Вацап +79772729099</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Я уже пробовала худеть и не получилось. Чем ваш марафон отличается от других?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">В отличие от других курсов и марафонов по похудению, я учу вас находить баланс и получать удовольствие от полезной еды и тренировок. Так гораздо меньше срывов и больше желания продолжать путь к своему здоровому и красивому телу. Также, программа учитывает особенности женского организма и возраста (30+). А самое главное - вы получаете сильную поддержку от меня и сообщества единомышленниц, что и является ключом к успеху.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Как я получу доступ к материалам?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">После оплаты вам придет ссылка на закрытую платформу - мобильное приложение, где будут доступны все видеоуроки, меню и чек-листы. Вы сможете смотреть их в удобное для вас время.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Можно ли оплатить марафон частями?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">Да. Вы можете сейчас внести предоплату 1000р., а оставшуюся часть внести до начала марафона. Так вы точно забронируете за собой место и все бонусы.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Не проходит оплата, что делать?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="mt-4 text-gray-700">По всем вопросам связанным с оплатой напишите Вацап +79685189722 и вам помогут разобраться и подобрать удобный способ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="payment-section-2" class="py-16 bg-[#f0f0f0] text-center">
+        <div class="container fade-in">
+             <h2 class="text-3xl md:text-4xl font-bold mb-8">Набор на марафон завершен!</h2>
+            <p class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">
+                <span class="text-red-500">Следите за анонсами следующих потоков!</span>
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                
+                <div
+                    class="card p-8 border-4 border-[#2C623C] transition-all duration-300 transform relative text-center">
+                    <div
+                        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2C623C] text-white text-xs font-bold px-4 py-1 rounded-full uppercase">
+                        Максимум выгоды</div>
+                    <h3 class="text-2xl font-bold mb-4">Тариф БАЗОВЫЙ</h3>
+                     <h3 class="text-2xl font-bold mb-4"> </h3>
+                    <p class="text-5xl font-extrabold text-gray-500 mb-4">
+                        <del>Sold Out</del>
+                    </p>
+                    <p class="mb-6 text-gray-600">Набор на этот тариф завершен.</p>
+                    <button disabled class="btn btn-primary w-full mb-2"><del>Sold Out</del></button>
+                    <button disabled class="btn btn-primary w-full"><del>Sold Out</del></button>
+                </div>
+                <!-- Card 3: Тариф VIP -->
+                 <div class="card p-8 border-4 border-amber-500 transition-all duration-300 transform relative text-center flex flex-col">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-amber-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase">VIP</div>
+                    <h3 class="text-2xl font-bold mb-4">Тариф VIP</h3>
+                    <div class="flex-grow">
+                        <ul class="text-left mb-4 space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Входит вся базовая программа марафона с общим чатом</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Личный чат с Натальей.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Индивидуальный подбор меню от Натальи под ваш вкус, режим и особенности.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1 flex-shrink-0"></i><span>Более персональный подход по тренировкам.</span></li>
+                        </ul>
+                         <p class="text-4xl font-extrabold text-gray-500 mb-4"><del>Sold Out</del></p>
+                        <p class="mb-6 text-gray-600 font-bold">Все места заняты</p>
+                        </p>
+                    <p class="mb-6 text-gray-600">Набор на этот тариф завершен.</p>
+                    <button disabled class="btn btn-primary w-full mb-2"><del>Sold Out</del></button>
+                    <button disabled class="btn btn-primary w-full"><del>Sold Out</del></button>
+                </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#333] text-white py-12 text-center">
+        <div class="container text-sm">
+            <p class="mb-4">© 2025. Самозанятая Макаренко Наталья Анатольевна. Все права защищены.</p>
+            <p class="mb-2">ИНН: 772672813036 | Юридический адрес: г. Москва, ул. Херсонская д. 26, корпус 2, кв. 120</p>
+            <p class="mb-2">e-mail: manbrikserg@mail.ru</p>
+            <p class="mb-2">Режим работы: с понедельника по пятницу с 10:00 до 17:00 (МСК)</p>
+            <p class="mt-4">
+                <a href="#" class="underline hover:text-[#F7931E]" onclick="document.getElementById('policyModal').style.display='block';return false;">Политика в отношении обработки персональных данных</a>
+            </p>
+        </div>
+    </footer>
+
+    <div id="policyModal" class="modal">
+        <div class="modal-content">
+            <button aria-label="Закрыть" class="modal-close" onclick="document.getElementById('policyModal').style.display='none'">&times;</button>
+            <h2>Политика обработки персональных данных</h2>
+            <p><strong>Политика обработки персональных данных Макаренко Натальи Анатольевны (ИНН 772672813036)</strong>, разработана в соответствии с Федеральным законом от 27.07.2006 г. № 152-ФЗ «О персональных данных» (далее — Закон) и другими нормативными правовыми актами в области персональных данных.</p>
+            <p>Когда в Политике используются слова «мы», «нас» и прочие, говорится о Макаренко Наталье Анатольевне (ИНН 772672813036).</p>
+            <p>В Политике мы обращаемся к вам, как пользователю нашего сайта, размещенного по адресу nataliamakarenko.ru (включая поддомены) (далее — Сайт).</p>
+            <h3>О чем Политика?</h3>
+            <p>В Политике изложена информация о том, как мы обрабатываем ваши персональные данные, обеспечиваем их безопасность и конфиденциальность. Из Политики вы узнаете, какие персональные данные мы получаем и как их используем.</p>
+            <p>Также в Политике мы перечислили основные права субъектов персональных данных и объяснили, как ими воспользоваться.</p>
+            <h3>Что такое персональные данные?</h3>
+            <p>Персональные данные — это любая информация о человеке (субъекте персональных данных), по которым можно его определить. Мы обрабатываем только те персональные данные, которые перечислены в Политике, и которые характеризуют вас как пользователя Сайта.</p>
+            <p>Вы можете дать согласие на обработку персональных данных при заполнении заявки на оказание услуг, в соответствии с формой приведенной на Сайте.</p>
+            <h3>Какие права есть у вас?</h3>
+            <p>В любой момент, когда у нас есть ваши персональные данные, вы можете воспользоваться следующими правами:</p>
+            <ul>
+                <li><strong>Право на доступ:</strong> У вас есть право запросить копию персональных данных, которые у нас есть.</li>
+                <li><strong>Право на исправление:</strong> Вы можете попросить нас исправить неточные или неполные персональные данные.</li>
+                <li><strong>Право на отзыв:</strong> В любой момент вы можете отозвать свое согласие на обработку данных.</li>
+                <li><strong>Право на забвение:</strong> Вы можете запросить удаление данных, которые у нас есть относительно вас, за исключением случаев, когда мы обязаны хранить эти данные по закону.</li>
+            </ul>
+            <p>Вы можете обратиться к нам, если захотите уточнить порядок реализации иных прав, предусмотренных Федеральным законом «О персональных данных».</p>
+            <h3>Как мы обрабатываем персональные данные?</h3>
+            <p>Мы обрабатываем персональные данные как в цифровой форме (автоматизировано), так и вручную (без использования средств автоматизации). При этом мы ограничиваемся следующими действиями: сбор, систематизация, накопление, хранение, уточнение (обновление, изменение), обезличивание, уничтожение персональных данных.</p>
+            <h3>В каких целях мы обрабатываем ваши персональные данные?</h3>
+            <p>Мы не передаем ваши персональные данные третьим лицам без вашего согласия, за исключением случаев, когда такая обязанность установлена для нас законом.</p>
+            <p>При этом при получении вашего согласия на такую передачу, мы предоставляем ваши персональные данные третьим лицам для достижения заявленных выше целей обработки персональных данных.</p>
+            <h3>Как мы обеспечиваем безопасность персональных данных?</h3>
+            <p>Мы защищаем персональные данные, которые у нас хранятся, от разглашения, полной или частичной утраты, а также несанкционированного доступа со стороны третьих лиц. Для этого мы используем все необходимые технические и организационные меры по обеспечению безопасности и конфиденциальности, и постоянно обновляем их с учетом последних технических разработок.</p>
+            <p>Если происходит утечка персональных данных, то мы:</p>
+            <ul>
+                <li>в течение 24 часов уведомляем об этом Роскомнадзор;</li>
+                <li>в течение 72 часов проводим собственное расследование и уведомляем Роскомнадзор о его результатах.</li>
+            </ul>
+            <h3>Как мы вносим изменения в Политику?</h3>
+            <p>Мы оставляем за собой право вносить изменения в нашу Политику в любое время. Мы просим вас регулярно просматривать все обновления нашей Политики. Мы будем направлять уведомления об изменениях Политики в случае, если такие изменения являются существенными, всеми доступными нам способами.</p>
+            <h3>Что мы не проверяем?</h3>
+            <p>Мы не можем проверить и поэтому доверяем Вам в том, что вы: обладаете полной дееспособностью; предоставили собственные достоверные персональные данные.</p>
+            <h3>Как с нами связаться?</h3>
+            <p>По любым вопросам в отношении обработки персональных данных вы можете обратиться к нам по электронной почте.</p>
+            <p>При обращении укажите свое имя и контакты для обратной связи. Мы ответим на ваше обращение не позднее 10 рабочих дней с момента его получения.</p>
+            <h3>Реквизиты Оператора</h3>
+            <p><strong>Самозанятая Макаренко Наталья Анатольевна</strong><br>ИНН: 772672813036<br>КНД: 1122035<br>Справка о постановке на учет физического лица в качестве налогоплательщика налога на профессиональный доход №53913960 от 31.03.2024 г.<br>Юридический адрес: г. Москва, ул. Херсонская д. 26, корпус 2, кв. 120<br>e-mail: manbrikserg@mail.ru</p>
+            <p>Режим работы: с понедельника по пятницу с 10:00 до 17:00 (время московское).</p>
+        </div>
+    </div>
+
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // FAQ functionality
+        document.getElementById('faq-container').addEventListener('click', function(e) {
+            const item = e.target.closest('.faq-item');
+            if (item) {
+                item.classList.toggle('active');
+            }
+        });
+
+        // Intersection Observer for fade-in animation
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Carousel Swipe and Button Functionality
+        function setupCarousel(carouselId, prevBtnId, nextBtnId) {
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+
+            const inner = carousel.querySelector('.carousel-inner');
+            const items = inner.children;
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+            let currentIndex = 0;
+            let startX = 0;
+            let isDragging = false;
+
+            function updateCarouselPosition() {
+                inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            
+            if(prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+                    updateCarouselPosition();
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+                    updateCarouselPosition();
+                });
+            }
+
+
+            carousel.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                inner.style.transition = 'none';
+                carousel.style.cursor = 'grabbing';
+            });
+
+            carousel.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    inner.style.transition = 'transform 0.5s ease-in-out';
+                    carousel.style.cursor = 'grab';
+                }
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    inner.style.transition = 'transform 0.5s ease-in-out';
+                    carousel.style.cursor = 'grab';
+                }
+            });
+
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const moveX = e.clientX - startX;
+                const threshold = 50;
+
+                if (moveX > threshold) {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+                    updateCarouselPosition();
+                    isDragging = false;
+                } else if (moveX < -threshold) {
+                    currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+                    updateCarouselPosition();
+                    isDragging = false;
+                }
+            });
+
+            // Touch events for mobile
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                inner.style.transition = 'none';
+            }, { passive: true });
+
+            carousel.addEventListener('touchmove', (e) => {
+                if (e.touches.length > 1) return;
+                const touchMoveX = e.touches[0].clientX - startX;
+                const threshold = 50;
+
+                if (touchMoveX > threshold) {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+                    updateCarouselPosition();
+                    startX = e.touches[0].clientX;
+                } else if (touchMoveX < -threshold) {
+                    currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+                    updateCarouselPosition();
+                    startX = e.touches[0].clientX;
+                }
+            });
+
+            carousel.addEventListener('touchend', () => {
+                inner.style.transition = 'transform 0.5s ease-in-out';
+            });
+        }
+        
+        // Initialize carousels
+        setupCarousel('beforeAfterCarousel', 'beforeAfterPrev', 'beforeAfterNext');
+        setupCarousel('reviewCarousel', 'reviewPrev', 'reviewNext');
+
+
+        // Modal close on click outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('policyModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+
+</html>
